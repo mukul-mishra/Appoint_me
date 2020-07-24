@@ -45,6 +45,15 @@ class _AuthScreenState extends State<AuthScreen> {
             .document(authResult.user.uid)
             .setData(
                 {'username': username, 'email': email, 'typeUser': typeUser});
+        await Firestore.instance
+            .collection('Appointee user deatails')
+            .document(authResult.user.uid)
+            .setData({
+          'username': username,
+          'age': age,
+          'phone no.': phn,
+          'city': city
+        });
       }
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check your credentials!';

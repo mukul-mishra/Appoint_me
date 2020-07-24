@@ -53,6 +53,21 @@ class _AuthScreenAppointerState extends State<AuthScreenAppointer> {
             .document(authResult.user.uid)
             .setData(
                 {'username': username, 'email': email, 'typeUser': typeUser});
+        await Firestore.instance
+            .collection('Appointer user deatails')
+            .document(authResult.user.uid)
+            .setData({
+          'username': username,
+          'specialisation': specialisation,
+          'phone no.': phn,
+          'address': address,
+          'normal_fee': fee,
+          'emergency_fee': emFee,
+          'morning_start_time': morTime1,
+          'morning_end_time': morTime2,
+          'evening_start_time': eveTime1,
+          'evening_end_time': eveTime2
+        });
       }
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check your credentials!';
