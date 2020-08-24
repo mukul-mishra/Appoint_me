@@ -5,19 +5,19 @@ import 'secondScreen.dart';
 
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
-class DashboardScreen extends StatefulWidget {
+class DashboardAppointee extends StatefulWidget {
   @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  _DashboardAppointeeState createState() => _DashboardAppointeeState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardAppointeeState extends State<DashboardAppointee> {
   List<ScreenHiddenDrawer> items = new List();
 
   @override
   void initState() {
     items.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
-          name: "Screen 1 Appointer",
+          name: "Screen 1 Appointee",
           baseStyle:
               TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
           colorLineSelected: Colors.teal,
@@ -26,7 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     items.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
-          name: "Screen 2 Appointer",
+          name: "Screen 2 Appointee",
           baseStyle:
               TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 28.0),
           colorLineSelected: Colors.orange,

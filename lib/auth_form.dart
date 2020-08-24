@@ -57,122 +57,126 @@ class _AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Card(
-        margin: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  TextFormField(
-                    key: ValueKey('email'),
-                    validator: (value) {
-                      if (value.isEmpty || !value.contains('@')) {
-                        return 'Please enter a valid email address.';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email address',
-                    ),
-                    onSaved: (value) {
-                      _userEmail = value;
-                    },
-                  ),
-                  if (!_isLogin)
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Card(
+          //borderOnForeground: false,
+          margin: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
                     TextFormField(
-                      key: ValueKey('username'),
+                      key: ValueKey('email'),
                       validator: (value) {
-                        if (value.isEmpty || value.length < 4) {
-                          return 'Please enter at least 4 characters';
+                        if (value.isEmpty || !value.contains('@')) {
+                          return 'Please enter a valid email address.';
                         }
                         return null;
                       },
-                      decoration: InputDecoration(labelText: 'Username'),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Email address',
+                      ),
                       onSaved: (value) {
-                        _userName = value;
+                        _userEmail = value;
                       },
                     ),
-                  if (!_isLogin)
+                    if (!_isLogin)
+                      TextFormField(
+                        key: ValueKey('username'),
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return 'Please enter at least 4 characters';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(labelText: 'Username'),
+                        onSaved: (value) {
+                          _userName = value;
+                        },
+                      ),
+                    if (!_isLogin)
+                      TextFormField(
+                        key: ValueKey('phn'),
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return 'Please enter at least 4 characters';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(labelText: 'Phone'),
+                        onSaved: (value) {
+                          _phn = value;
+                        },
+                      ),
+                    if (!_isLogin)
+                      TextFormField(
+                        key: ValueKey('age'),
+                        validator: (value) {
+                          if (value.isEmpty || value == '0') {
+                            return 'Please enter a valid age';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(labelText: 'age'),
+                        onSaved: (value) {
+                          _age = value;
+                        },
+                      ),
+                    if (!_isLogin)
+                      TextFormField(
+                        key: ValueKey('city'),
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return 'Please enter a valid city';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(labelText: 'city'),
+                        onSaved: (value) {
+                          _city = value;
+                        },
+                      ),
                     TextFormField(
-                      key: ValueKey('phn'),
+                      key: ValueKey('password'),
                       validator: (value) {
-                        if (value.isEmpty || value.length < 4) {
-                          return 'Please enter at least 4 characters';
+                        if (value.isEmpty || value.length < 7) {
+                          return 'Password must be at least 7 characters long.';
                         }
                         return null;
                       },
-                      decoration: InputDecoration(labelText: 'Phone'),
+                      decoration: InputDecoration(labelText: 'Password'),
+                      obscureText: true,
                       onSaved: (value) {
-                        _phn = value;
+                        _userPassword = value;
                       },
                     ),
-                  if (!_isLogin)
-                    TextFormField(
-                      key: ValueKey('age'),
-                      validator: (value) {
-                        if (value.isEmpty || value == '0') {
-                          return 'Please enter a valid age';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(labelText: 'age'),
-                      onSaved: (value) {
-                        _age = value;
-                      },
-                    ),
-                  if (!_isLogin)
-                    TextFormField(
-                      key: ValueKey('city'),
-                      validator: (value) {
-                        if (value.isEmpty || value.length < 4) {
-                          return 'Please enter a valid city';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(labelText: 'city'),
-                      onSaved: (value) {
-                        _city = value;
-                      },
-                    ),
-                  TextFormField(
-                    key: ValueKey('password'),
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 7) {
-                        return 'Password must be at least 7 characters long.';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(labelText: 'Password'),
-                    obscureText: true,
-                    onSaved: (value) {
-                      _userPassword = value;
-                    },
-                  ),
-                  SizedBox(height: 12),
-                  if (widget.isLoading) CircularProgressIndicator(),
-                  if (!widget.isLoading)
-                    RaisedButton(
-                      child: Text(_isLogin ? 'Login' : 'Signup'),
-                      onPressed: _trySubmit,
-                    ),
-                  if (!widget.isLoading)
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      child: Text(_isLogin
-                          ? 'Create new account'
-                          : 'I already have an account'),
-                      onPressed: () {
-                        setState(() {
-                          _isLogin = !_isLogin;
-                        });
-                      },
-                    )
-                ],
+                    SizedBox(height: 12),
+                    if (widget.isLoading) CircularProgressIndicator(),
+                    if (!widget.isLoading)
+                      RaisedButton(
+                        child: Text(_isLogin ? 'Login' : 'Signup'),
+                        onPressed: _trySubmit,
+                      ),
+                    if (!widget.isLoading)
+                      FlatButton(
+                        textColor: Theme.of(context).primaryColor,
+                        child: Text(_isLogin
+                            ? 'Create new account'
+                            : 'I already have an account'),
+                        onPressed: () {
+                          setState(() {
+                            _isLogin = !_isLogin;
+                          });
+                        },
+                      )
+                  ],
+                ),
               ),
             ),
           ),

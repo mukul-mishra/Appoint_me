@@ -1,3 +1,4 @@
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,47 +12,38 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('first screen'),
-        actions: <Widget>[
-          DropdownButton(
-            icon: Icon(
-              Icons.more_vert,
-              color: Theme.of(context).primaryIconTheme.color,
+        appBar: AppBar(
+          title: Text('first screen'),
+          actions: <Widget>[
+            DropdownButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Theme.of(context).primaryIconTheme.color,
+              ),
+              items: [
+                DropdownMenuItem(
+                    child: Container(
+                        child: Row(
+                      children: <Widget>[
+                        Icon(Icons.exit_to_app),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('LogOut!')
+                      ],
+                    )),
+                    value: 'LogOut!'),
+              ],
+              onChanged: (itemIdentifier) {
+                if (itemIdentifier == 'LogOut!') {
+                  FirebaseAuth.instance.signOut();
+                }
+              },
             ),
-            items: [
-              DropdownMenuItem(
-                  child: Container(
-                      child: Row(
-                    children: <Widget>[
-                      Icon(Icons.exit_to_app),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text('LogOut!')
-                    ],
-                  )),
-                  value: 'LogOut!'),
-            ],
-            onChanged: (itemIdentifier) {
-              if (itemIdentifier == 'LogOut!') {
-                FirebaseAuth.instance.signOut();
-              }
-            },
-          ),
-        ],
-      ),
-      body: FutureBuilder(
-        future: FirebaseAuth.instance.currentUser(),
-        builder: (ctx, futureSnapshot) {
-          if (futureSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return Container();
-        },
-      ),
-    );
+          ],
+        ),
+        body: Container(
+          child: Text("hello"),
+        ));
   }
 }

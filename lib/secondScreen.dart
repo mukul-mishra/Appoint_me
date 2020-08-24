@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SecondScreen extends StatefulWidget {
   @override
@@ -40,17 +41,21 @@ class _SecondScreenState extends State<SecondScreen> {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: FirebaseAuth.instance.currentUser(),
-        builder: (ctx, futureSnapshot) {
-          if (futureSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return Container();
-        },
-      ),
+      /*body: StreamBuilder(
+          stream: Firestore.instance.collection('users').snapshots(),
+          builder: (ctx, streamSnapshot) {
+            if (streamSnapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final document = streamSnapshot.data.documents;
+            return ListView.builder(
+                itemCount: document.length,
+                itemBuilder: (ctx, index) => Container(
+                      child: Text(document[index]['username']),
+                    ));
+          }),*/
     );
   }
 }

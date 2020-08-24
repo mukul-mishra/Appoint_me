@@ -54,7 +54,7 @@ class _AuthScreenAppointerState extends State<AuthScreenAppointer> {
             .setData(
                 {'username': username, 'email': email, 'typeUser': typeUser});
         await Firestore.instance
-            .collection('Appointer user deatails')
+            .collection('Appointers')
             .document(authResult.user.uid)
             .setData({
           'username': username,
@@ -96,7 +96,7 @@ class _AuthScreenAppointerState extends State<AuthScreenAppointer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.white24,
       body: AuthFormAppointer(
         _submitAuthForm,
         _isLoading,

@@ -76,6 +76,7 @@ class _AuthFormAppointerState extends State<AuthFormAppointer> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+        //borderOnForeground: false,
         margin: EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Padding(

@@ -46,14 +46,9 @@ class _AuthScreenState extends State<AuthScreen> {
             .setData(
                 {'username': username, 'email': email, 'typeUser': typeUser});
         await Firestore.instance
-            .collection('Appointee user deatails')
+            .collection('Appointees')
             .document(authResult.user.uid)
-            .setData({
-          'username': username,
-          'age': age,
-          'phone no.': phn,
-          'city': city
-        });
+            .setData({'username': username, 'city': city, 'age': age});
       }
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check your credentials!';
@@ -82,7 +77,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Colors.white24,
       body: AuthForm(
         _submitAuthForm,
         _isLoading,

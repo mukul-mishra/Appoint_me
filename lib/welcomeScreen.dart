@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 //import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:nice_button/nice_button.dart';
+//import 'package:nice_button/nice_button.dart';
 //import 'package:AppointMeetTest/login.dart';
 //import 'test_screen.dart';
-import 'auth_screen.dart';
-import 'auth_screen_appointer.dart';
+//import 'auth_screen.dart';
+//import 'auth_screen_appointer.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -151,7 +151,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               ],
             ),
           ),
-          Padding(
+          /*Padding(
             padding:
                 EdgeInsets.only(top: 140.0, left: 20, right: 20, bottom: 10),
             child: Row(
@@ -198,7 +198,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 )
               ],
             ),
-          ),
+          ),*/
         ],
       ),
     );
